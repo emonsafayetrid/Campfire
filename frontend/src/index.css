@@ -1,0 +1,182 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  @apply bg-paper text-ink font-body antialiased;
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(28, 27, 26, 0.06) 1px,
+    transparent 0
+  );
+  background-size: 22px 22px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  @apply font-display font-semibold tracking-tight;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #d9cfb4 transparent;
+}
+
+*:focus-visible {
+  outline: 2px solid #1c1b1a;
+  outline-offset: 2px;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-thumb {
+  background: #d9cfb4;
+  border-radius: 8px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+@layer components {
+  /* ---------- Buttons ---------- */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border-2 border-ink px-4 py-2 text-sm font-display font-semibold
+      transition-all duration-150 ease-out disabled:opacity-50 disabled:pointer-events-none whitespace-nowrap;
+  }
+  .btn-primary {
+    @apply btn bg-campyellow text-ink shadow-campsm hover:-translate-y-0.5 hover:shadow-camp active:translate-y-0 active:shadow-none;
+  }
+  .btn-dark {
+    @apply btn bg-ink text-paper shadow-campsm hover:-translate-y-0.5 hover:shadow-camp active:translate-y-0 active:shadow-none border-ink;
+  }
+  .btn-ghost {
+    @apply btn border-transparent bg-transparent hover:bg-ink/5;
+  }
+  .btn-outline {
+    @apply btn bg-paper hover:-translate-y-0.5 hover:shadow-campsm active:translate-y-0 active:shadow-none;
+  }
+  .btn-danger {
+    @apply btn bg-camppink text-ink shadow-campsm hover:-translate-y-0.5 hover:shadow-camp active:translate-y-0 active:shadow-none;
+  }
+  .btn-sm {
+    @apply px-3 py-1.5 text-xs;
+  }
+  .icon-btn {
+    @apply inline-flex items-center justify-center rounded-full h-9 w-9 border-2 border-transparent hover:border-ink/15 hover:bg-ink/5 transition-colors;
+  }
+
+  /* ---------- Inputs ---------- */
+  .field-label {
+    @apply block text-xs font-display font-semibold uppercase tracking-wide text-ink/60 mb-1.5;
+  }
+  .field-input {
+    @apply w-full rounded-xl border-2 border-ink/15 bg-white px-3.5 py-2.5 text-sm text-ink placeholder:text-ink/35
+      focus:border-ink focus:outline-none transition-colors;
+  }
+  .field-textarea {
+    @apply field-input resize-none;
+  }
+  .field-error {
+    @apply text-xs text-camppink font-medium mt-1;
+  }
+
+  /* ---------- Cards & surfaces ---------- */
+  .card {
+    @apply rounded-camp border-2 border-ink bg-white shadow-card;
+  }
+  .card-hover {
+    @apply hover:-translate-y-1 hover:shadow-camp transition-all duration-150 ease-out;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1.5 rounded-full border border-ink/15 bg-ink/5 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-wide text-ink/70;
+  }
+
+  .chip-dot {
+    @apply h-2.5 w-2.5 rounded-full shrink-0;
+  }
+}
+
+@layer utilities {
+  .animate-toast-in {
+    animation: toast-in 0.25s ease-out;
+  }
+  .animate-pop {
+    animation: pop 0.18s ease-out;
+  }
+  .animate-fade-in {
+    animation: fade-in 0.2s ease-out;
+  }
+  .animate-slide-in {
+    animation: slide-in 0.22s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+  .scribble-underline {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 12' preserveAspectRatio='none'%3E%3Cpath d='M2 8 Q 50 2, 100 7 T 198 6' stroke='%23FFC94D' stroke-width='5' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: 0 90%;
+    background-size: 100% 30%;
+  }
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes pop {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
